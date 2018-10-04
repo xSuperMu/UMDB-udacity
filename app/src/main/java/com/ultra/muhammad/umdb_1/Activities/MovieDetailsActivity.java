@@ -6,7 +6,6 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -32,12 +31,12 @@ import static com.ultra.muhammad.umdb_1.Network.RetrofitClientInstance.POSTER_BA
 
 public class MovieDetailsActivity extends AppCompatActivity {
     private static final String TAG = MovieDetailsActivity.class.getSimpleName();
-    ImageView mPosterImage, mBackgroundImage;
-    ImageButton mFavorite;
+    ImageView mPosterImage;
+    ImageView mBackgroundImage;
     TextView mTitle, mRating, mYear, mType, mOverview;
     ConstraintLayout mDetailsActivity;
     String title, poster, background, productionYear, rate, genre, year, movieId, overview;
-    Movie movie;
+    Movie movie = null;
     ProgressBar mLoadingProgressBar;
     boolean bool, f1 = false;
     Map<String, Object> options = new HashMap<>();
@@ -59,7 +58,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
         setUpWidgets();
         showProgressBar();
 
-        movie = null;
         Intent intent = getIntent();
         if (intent != null)
             if (intent.hasExtra("selected_movie"))

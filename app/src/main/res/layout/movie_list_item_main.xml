@@ -28,6 +28,12 @@
         app:layout_constraintTop_toBottomOf="@id/movie_poster_img_main"
         tools:ignore="UseCompoundDrawables">
 
+        <ImageButton
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/star"
+            android:src="@drawable/ic_star_gold_24dp" />
 
         <TextView
             android:id="@+id/movie_rating_main"

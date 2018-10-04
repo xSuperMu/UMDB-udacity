@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarker</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
 
     <style name="MineCustomTabText" parent="TextAppearance.Design.Tab">
@@ -16,6 +17,7 @@
 
     <!-- Splash Screen theme. -->
     <style name="SplashTheme" parent="@style/AppTheme">
+        <!--<item name="android:windowActionBar">false</item>-->
         <item name="android:windowBackground">@color/colorPrimaryDarker</item>
     </style>
 </resources>
