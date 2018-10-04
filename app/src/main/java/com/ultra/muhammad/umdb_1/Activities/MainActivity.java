@@ -1,7 +1,9 @@
-package com.ultra.muhammad.umdb_1;
+package com.ultra.muhammad.umdb_1.Activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+import com.ultra.muhammad.umdb_1.R;
 
 public class MainActivity extends AppCompatActivity {
 

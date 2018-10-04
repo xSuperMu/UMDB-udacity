@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">UMDB-1</string>
+    <string name="api_key">d850ee1199366a1ede2528fe84054aa5</string>
+    <string name="most_popular_movies">Most Popular Movies</string>
+    <string name="star">star icon</string>
+    <string name="background_image">Background Image</string>
+    <string name="poster_image">Poster image</string>
+    <string name="top_rated_movies">Top Rated Movies</string>
+
+
 </resources>
