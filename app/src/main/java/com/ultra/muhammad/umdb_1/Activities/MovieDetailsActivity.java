@@ -62,7 +62,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
     private static String formatTime(String tripTime) throws ParseException {
         Log.d(TAG, "formatTime() has been instantiated");
         DateFormat formatter
-                = new SimpleDateFormat("yyyy");
+                = new SimpleDateFormat("MM-dd-yyyy");
         DateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         Date date = originalFormat.parse(tripTime);
         return formatter.format(date);

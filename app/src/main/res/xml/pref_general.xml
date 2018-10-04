@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <CheckBoxPreference
-        android:defaultValue="@bool/show_most_popular_by_default"
-        android:key="@string/pref_enable_most_popular_movies_key"
-        android:summaryOff="@string/pref_enable_most_popular_movies_false"
-        android:summaryOn="@string/pref_enable_most_popular_movies_true"
-        android:title="@string/pref_enable_most_popular_movies_title" />
-
-    <CheckBoxPreference
-        android:defaultValue="@bool/show_top_rated_by_default"
-        android:key="@string/pref_enable_top_rated_movies_key"
-        android:summaryOff="@string/pref_enable_top_rated_movies_false"
-        android:summaryOn="@string/pref_enable_top_rated_movies_true"
-        android:title="@string/pref_enable_top_rated_movies_Title" />
+    <ListPreference
+        android:defaultValue="@string/pref_enable_most_popular_movies_key"
+        android:entries="@array/pref_movies_options"
+        android:entryValues="@array/pref_movies_values"
+        android:key="@string/pref_movies_key"
+        android:title="@string/pref_movies_label" />
 
 </PreferenceScreen>

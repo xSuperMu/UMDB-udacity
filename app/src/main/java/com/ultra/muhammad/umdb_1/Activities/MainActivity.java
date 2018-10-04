@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
@@ -51,9 +51,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private void prepareRecyclerViews() {
         Log.d(TAG, "prepareRecyclerViews() has been instantiated");
 
-        LinearLayoutManager mLinearLayoutManager =
-                new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        mTopRatedMoviesRecycler.setLayoutManager(mLinearLayoutManager);
+        GridLayoutManager gridLayoutManagerTopRated =
+                new GridLayoutManager(this, 3);
+        mTopRatedMoviesRecycler.setLayoutManager(gridLayoutManagerTopRated);
         mTopRatedMoviesRecycler.setDrawingCacheEnabled(true);
         mTopRatedMoviesRecycler.setHasFixedSize(true);
         mTopRatedMoviesRecycler.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_AUTO);
@@ -73,9 +73,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
             }
         }));
-        LinearLayoutManager mUpComingMovieLinearLayoutManager =
-                new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        mMostPopularMoviesRecycler.setLayoutManager(mUpComingMovieLinearLayoutManager);
+        GridLayoutManager gridLayoutManagerMostPopular =
+                new GridLayoutManager(this, 3);
+        mMostPopularMoviesRecycler.setLayoutManager(gridLayoutManagerMostPopular);
         mMostPopularMoviesRecycler.setDrawingCacheEnabled(true);
         mMostPopularMoviesRecycler.setHasFixedSize(true);
         mMostPopularMoviesRecycler.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_AUTO);
@@ -133,16 +133,17 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equals(getString(R.string.pref_enable_top_rated_movies_key))) {
-            if (!sharedPreferences.getBoolean(key, getResources().getBoolean(R.bool.show_most_popular_by_default)))
-                mMostPopularMoviesLayout.setVisibility(View.GONE);
-            else
-                mMostPopularMoviesLayout.setVisibility(View.VISIBLE);
-        } else if (key.equals(getString(R.string.pref_enable_most_popular_movies_key))) {
-            if (!sharedPreferences.getBoolean(key, getResources().getBoolean(R.bool.show_top_rated_by_default)))
+
+        if (key.equals(getString(R.string.pref_movies_key))) {
+            String s = sharedPreferences.getString(key, getString(R.string.pref_enable_most_popular_movies_key));
+            if (s.equals(getString(R.string.pref_enable_top_rated_movies_key))) {
                 mTopRatedMoviesLayout.setVisibility(View.GONE);
-            else
+                mMostPopularMoviesLayout.setVisibility(View.VISIBLE);
+            } else if (s.equals(getString(R.string.pref_enable_most_popular_movies_key))) {
                 mTopRatedMoviesLayout.setVisibility(View.VISIBLE);
+                mMostPopularMoviesLayout.setVisibility(View.GONE);
+            }
         }
     }
+
 }
