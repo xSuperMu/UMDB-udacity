@@ -20,14 +20,16 @@ import com.ultra.muhammad.umdb_1.MovieUtils.RecyclerItemClickListener;
 import com.ultra.muhammad.umdb_1.R;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 import static com.ultra.muhammad.umdb_1.Activities.SplashActivity.mMostPopularMoviesList;
 import static com.ultra.muhammad.umdb_1.Activities.SplashActivity.mTopRatedMoviesList;
 
 public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String TAG = MainActivity.class.getSimpleName();
-
+    @BindView(R.id.recycler_view_top_rated)
     RecyclerView mTopRatedMoviesRecycler;
+    @BindView(R.id.recycler_view_most_popular)
     RecyclerView mMostPopularMoviesRecycler;
     @BindView(R.id.top_rated_layout)
     ConstraintLayout mMostPopularMoviesLayout;
@@ -38,8 +40,17 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         Log.d(TAG, "onCreate() has been instantiated");
-        mTopRatedMoviesRecycler = findViewById(R.id.recycler_view_top_rated);
+        prepareRecyclerViews();
+
+        loadMoviesData();
+        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
+    }
+
+    private void prepareRecyclerViews() {
+        Log.d(TAG, "prepareRecyclerViews() has been instantiated");
+
         LinearLayoutManager mLinearLayoutManager =
                 new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mTopRatedMoviesRecycler.setLayoutManager(mLinearLayoutManager);
@@ -62,7 +73,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
             }
         }));
-        mMostPopularMoviesRecycler = findViewById(R.id.recycler_view_most_popular);
         LinearLayoutManager mUpComingMovieLinearLayoutManager =
                 new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mMostPopularMoviesRecycler.setLayoutManager(mUpComingMovieLinearLayoutManager);
@@ -85,9 +95,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
             }
         }));
-
-        loadMoviesData();
-        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
     }
 
     private void loadMoviesData() {
@@ -126,12 +133,12 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equals(getString(R.string.pref_enable_most_popular_movies_key))) {
+        if (key.equals(getString(R.string.pref_enable_top_rated_movies_key))) {
             if (!sharedPreferences.getBoolean(key, getResources().getBoolean(R.bool.show_most_popular_by_default)))
                 mMostPopularMoviesLayout.setVisibility(View.GONE);
             else
                 mMostPopularMoviesLayout.setVisibility(View.VISIBLE);
-        } else if (key.equals(getString(R.string.pref_enable_top_rated_movies_key))) {
+        } else if (key.equals(getString(R.string.pref_enable_most_popular_movies_key))) {
             if (!sharedPreferences.getBoolean(key, getResources().getBoolean(R.bool.show_top_rated_by_default)))
                 mTopRatedMoviesLayout.setVisibility(View.GONE);
             else

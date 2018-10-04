@@ -26,18 +26,36 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 import static com.ultra.muhammad.umdb_1.Network.RetrofitClientInstance.BACKGROUND_BASE_URL;
 import static com.ultra.muhammad.umdb_1.Network.RetrofitClientInstance.POSTER_BASE_URL;
 
 public class MovieDetailsActivity extends AppCompatActivity {
     private static final String TAG = MovieDetailsActivity.class.getSimpleName();
+
+    @BindView(R.id.details_movie_poster_img)
     ImageView mPosterImage;
+    @BindView(R.id.details_movie_background_img)
     ImageView mBackgroundImage;
-    TextView mTitle, mRating, mYear, mType, mOverview;
+    @BindView(R.id.details_movie_name)
+    TextView mTitle;
+    @BindView(R.id.details_movie_rating)
+    TextView mRating;
+    @BindView(R.id.production_year_tv)
+    TextView mYear;
+    @BindView(R.id.movie_type_tv)
+    TextView mType;
+    @BindView(R.id.overview_tv)
+    TextView mOverview;
+    @BindView(R.id.activity_movie_details_layout)
     ConstraintLayout mDetailsActivity;
+    @BindView(R.id.loading_progress_bar)
+    ProgressBar mLoadingProgressBar;
+
     String title, poster, background, productionYear, rate, genre, year, movieId, overview;
     Movie movie = null;
-    ProgressBar mLoadingProgressBar;
     boolean bool, f1 = false;
     Map<String, Object> options = new HashMap<>();
 
@@ -54,8 +72,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
+        ButterKnife.bind(this);
         Log.d(TAG, "onCreate() has been instantiated");
-        setUpWidgets();
         showProgressBar();
 
         Intent intent = getIntent();
@@ -78,19 +96,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
         }
 
         getExtraMovieDetailsFromInternet(movieId);
-    }
-
-    private void setUpWidgets() {
-        Log.d(TAG, "setUpWidgets() has been instantiated");
-        mPosterImage = findViewById(R.id.details_movie_poster_img);
-        mBackgroundImage = findViewById(R.id.details_movie_background_img);
-        mTitle = findViewById(R.id.details_movie_name);
-        mRating = findViewById(R.id.details_movie_rating);
-        mYear = findViewById(R.id.production_year_tv);
-        mType = findViewById(R.id.movie_type_tv);
-        mDetailsActivity = findViewById(R.id.activity_movie_details_layout);
-        mLoadingProgressBar = findViewById(R.id.loading_progress_bar);
-        mOverview = findViewById(R.id.overview_tv);
     }
 
     private void getExtraMovieDetailsFromInternet(String movieId) {

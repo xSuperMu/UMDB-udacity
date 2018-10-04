@@ -17,6 +17,9 @@ import com.ultra.muhammad.umdb_1.R;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesAdapterViewHolder> {
     private static final String TAG = MoviesAdapter.class.getSimpleName();
     private Context mContext;
@@ -47,14 +50,14 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesAdap
     }
 
     class MoviesAdapterViewHolder extends RecyclerView.ViewHolder {
-
-        private ImageView mPosterImage;
-        private TextView mRating;
+        @BindView(R.id.movie_poster_img_main)
+        ImageView mPosterImage;
+        @BindView(R.id.movie_rating_main)
+        TextView mRating;
 
         private MoviesAdapterViewHolder(View view) {
             super(view);
-            mPosterImage = view.findViewById(R.id.movie_poster_img_main);
-            mRating = view.findViewById(R.id.movie_rating_main);
+            ButterKnife.bind(this, view);
         }
 
         void bind(int position) {
