@@ -1,25 +1,34 @@
 package com.ultra.muhammad.umdb_1.Models;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-import javax.annotation.Generated;
-
-@Generated("com.robohorse.robopojogenerator")
-public class MovieResponse {
-
+public class MovieResponse implements Serializable {
     @SerializedName("page")
+    @Expose
     private int page;
-
     @SerializedName("total_pages")
-    private int totalPages;
-
+    @Expose
+    private int total_pages;
     @SerializedName("results")
+    @Expose
     private List<Movie> results;
-
     @SerializedName("total_results")
-    private int totalResults;
+    @Expose
+    private int total_results;
+
+    public MovieResponse(int page, int total_pages, List<Movie> results, int total_results) {
+        this.page = page;
+        this.total_pages = total_pages;
+        this.results = results;
+        this.total_results = total_results;
+    }
+
+    public MovieResponse() {
+    }
 
     public int getPage() {
         return page;
@@ -29,12 +38,12 @@ public class MovieResponse {
         this.page = page;
     }
 
-    public int getTotalPages() {
-        return totalPages;
+    public int getTotal_pages() {
+        return total_pages;
     }
 
-    public void setTotalPages(int totalPages) {
-        this.totalPages = totalPages;
+    public void setTotal_pages(int total_pages) {
+        this.total_pages = total_pages;
     }
 
     public List<Movie> getResults() {
@@ -45,12 +54,12 @@ public class MovieResponse {
         this.results = results;
     }
 
-    public int getTotalResults() {
-        return totalResults;
+    public int getTotal_results() {
+        return total_results;
     }
 
-    public void setTotalResults(int totalResults) {
-        this.totalResults = totalResults;
+    public void setTotal_results(int total_results) {
+        this.total_results = total_results;
     }
 
     @Override
@@ -58,9 +67,9 @@ public class MovieResponse {
         return
                 "MovieResponse{" +
                         "page = '" + page + '\'' +
-                        ",total_pages = '" + totalPages + '\'' +
+                        ",total_pages = '" + total_pages + '\'' +
                         ",results = '" + results + '\'' +
-                        ",total_results = '" + totalResults + '\'' +
+                        ",total_results = '" + total_results + '\'' +
                         "}";
     }
 }

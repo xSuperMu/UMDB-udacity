@@ -1,265 +1,348 @@
 package com.ultra.muhammad.umdb_1.Models;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.List;
 
-import javax.annotation.Generated;
-
-@Generated("net.hexar.json2pojo")
-@SuppressWarnings("unused")
 public class MovieDetails implements Serializable {
-
     @SerializedName("adult")
-    private Boolean mAdult;
+    @Expose
+    private Boolean adult;
     @SerializedName("backdrop_path")
-    private String mBackdropPath;
+    @Expose
+    private String backdrop_path;
     @SerializedName("belongs_to_collection")
-    private BelongsToCollection mBelongsToCollection;
+    @Expose
+    private BelongsToCollection belongs_to_collection;
     @SerializedName("budget")
-    private Long mBudget;
+    @Expose
+    private Long budget;
     @SerializedName("genres")
-    private List<Genre> mGenres;
+    @Expose
+    private List<Genre> genres;
     @SerializedName("homepage")
-    private String mHomepage;
+    @Expose
+    private String homepage;
     @SerializedName("id")
-    private Long mId;
+    @Expose
+    private Long id;
     @SerializedName("imdb_id")
-    private String mImdbId;
+    @Expose
+    private String imdb_id;
     @SerializedName("original_language")
-    private String mOriginalLanguage;
+    @Expose
+    private String original_language;
     @SerializedName("original_title")
-    private String mOriginalTitle;
+    @Expose
+    private String original_title;
     @SerializedName("overview")
-    private String mOverview;
+    @Expose
+    private String overview;
     @SerializedName("popularity")
-    private Double mPopularity;
+    @Expose
+    private Double popularity;
     @SerializedName("poster_path")
-    private String mPosterPath;
+    @Expose
+    private String poster_path;
     @SerializedName("production_companies")
-    private List<ProductionCompany> mProductionCompanies;
+    @Expose
+    private List<ProductionCompany> production_companies;
     @SerializedName("production_countries")
-    private List<ProductionCountry> mProductionCountries;
+    @Expose
+    private List<ProductionCountry> production_countries;
     @SerializedName("release_date")
-    private String mReleaseDate;
+    @Expose
+    private String release_date;
     @SerializedName("revenue")
-    private Long mRevenue;
+    @Expose
+    private Long revenue;
     @SerializedName("runtime")
-    private Long mRuntime;
+    @Expose
+    private Long runtime;
     @SerializedName("spoken_languages")
-    private List<SpokenLanguage> mSpokenLanguages;
+    @Expose
+    private List<SpokenLanguage> spoken_languages;
     @SerializedName("status")
-    private String mStatus;
+    @Expose
+    private String status;
     @SerializedName("tagline")
-    private String mTagline;
+    @Expose
+    private String tagline;
     @SerializedName("title")
-    private String mTitle;
+    @Expose
+    private String title;
     @SerializedName("video")
-    private Boolean mVideo;
+    @Expose
+    private Boolean video;
     @SerializedName("vote_average")
-    private Double mVoteAverage;
+    @Expose
+    private Double vote_average;
     @SerializedName("vote_count")
-    private Long mVoteCount;
+    @Expose
+    private Long vote_count;
+
+    public MovieDetails() {
+    }
+
+    public MovieDetails(Boolean adult, String backdrop_path, BelongsToCollection belongs_to_collection, Long budget, List<Genre> genres, String homepage, Long id, String imdb_id, String original_language, String original_title, String overview, Double popularity, String poster_path, List<ProductionCompany> production_companies, List<ProductionCountry> production_countries, String release_date, Long revenue, Long runtime, List<SpokenLanguage> spoken_languages, String status, String tagline, String title, Boolean video, Double vote_average, Long vote_count) {
+        this.adult = adult;
+        this.backdrop_path = backdrop_path;
+        this.belongs_to_collection = belongs_to_collection;
+        this.budget = budget;
+        this.genres = genres;
+        this.homepage = homepage;
+        this.id = id;
+        this.imdb_id = imdb_id;
+        this.original_language = original_language;
+        this.original_title = original_title;
+        this.overview = overview;
+        this.popularity = popularity;
+        this.poster_path = poster_path;
+        this.production_companies = production_companies;
+        this.production_countries = production_countries;
+        this.release_date = release_date;
+        this.revenue = revenue;
+        this.runtime = runtime;
+        this.spoken_languages = spoken_languages;
+        this.status = status;
+        this.tagline = tagline;
+        this.title = title;
+        this.video = video;
+        this.vote_average = vote_average;
+        this.vote_count = vote_count;
+    }
+
+    @Override
+    public String toString() {
+        return "MovieDetails{" +
+                "adult=" + adult +
+                ", backdrop_path='" + backdrop_path + '\'' +
+                ", belongs_to_collection=" + belongs_to_collection +
+                ", budget=" + budget +
+                ", genres=" + genres +
+                ", homepage='" + homepage + '\'' +
+                ", id=" + id +
+                ", imdb_id='" + imdb_id + '\'' +
+                ", original_language='" + original_language + '\'' +
+                ", original_title='" + original_title + '\'' +
+                ", overview='" + overview + '\'' +
+                ", popularity=" + popularity +
+                ", poster_path='" + poster_path + '\'' +
+                ", production_companies=" + production_companies +
+                ", production_countries=" + production_countries +
+                ", release_date='" + release_date + '\'' +
+                ", revenue=" + revenue +
+                ", runtime=" + runtime +
+                ", spoken_languages=" + spoken_languages +
+                ", status='" + status + '\'' +
+                ", tagline='" + tagline + '\'' +
+                ", title='" + title + '\'' +
+                ", video=" + video +
+                ", vote_average=" + vote_average +
+                ", vote_count=" + vote_count +
+                '}';
+    }
 
     public Boolean getAdult() {
-        return mAdult;
+        return adult;
     }
 
     public void setAdult(Boolean adult) {
-        mAdult = adult;
+        this.adult = adult;
     }
 
     public String getBackdropPath() {
-        return mBackdropPath;
+        return backdrop_path;
     }
 
     public void setBackdropPath(String backdropPath) {
-        mBackdropPath = backdropPath;
+        backdrop_path = backdropPath;
     }
 
     public BelongsToCollection getBelongsToCollection() {
-        return mBelongsToCollection;
+        return belongs_to_collection;
     }
 
     public void setBelongsToCollection(BelongsToCollection belongsToCollection) {
-        mBelongsToCollection = belongsToCollection;
+        belongs_to_collection = belongsToCollection;
     }
 
     public Long getBudget() {
-        return mBudget;
+        return budget;
     }
 
     public void setBudget(Long budget) {
-        mBudget = budget;
+        this.budget = budget;
     }
 
     public List<Genre> getGenres() {
-        return mGenres;
+        return genres;
     }
 
     public void setGenres(List<Genre> genres) {
-        mGenres = genres;
+        this.genres = genres;
     }
 
     public String getHomepage() {
-        return mHomepage;
+        return homepage;
     }
 
     public void setHomepage(String homepage) {
-        mHomepage = homepage;
+        this.homepage = homepage;
     }
 
     public Long getId() {
-        return mId;
+        return id;
     }
 
     public void setId(Long id) {
-        mId = id;
+        this.id = id;
     }
 
     public String getImdbId() {
-        return mImdbId;
+        return imdb_id;
     }
 
     public void setImdbId(String imdbId) {
-        mImdbId = imdbId;
+        imdb_id = imdbId;
     }
 
     public String getOriginalLanguage() {
-        return mOriginalLanguage;
+        return original_language;
     }
 
     public void setOriginalLanguage(String originalLanguage) {
-        mOriginalLanguage = originalLanguage;
+        original_language = originalLanguage;
     }
 
     public String getOriginalTitle() {
-        return mOriginalTitle;
+        return original_title;
     }
 
     public void setOriginalTitle(String originalTitle) {
-        mOriginalTitle = originalTitle;
+        original_title = originalTitle;
     }
 
     public String getOverview() {
-        return mOverview;
+        return overview;
     }
 
     public void setOverview(String overview) {
-        mOverview = overview;
+        this.overview = overview;
     }
 
     public Double getPopularity() {
-        return mPopularity;
+        return popularity;
     }
 
     public void setPopularity(Double popularity) {
-        mPopularity = popularity;
+        this.popularity = popularity;
     }
 
     public String getPosterPath() {
-        return mPosterPath;
+        return poster_path;
     }
 
     public void setPosterPath(String posterPath) {
-        mPosterPath = posterPath;
+        poster_path = posterPath;
     }
 
     public List<ProductionCompany> getProductionCompanies() {
-        return mProductionCompanies;
+        return production_companies;
     }
 
     public void setProductionCompanies(List<ProductionCompany> productionCompanies) {
-        mProductionCompanies = productionCompanies;
+        production_companies = productionCompanies;
     }
 
     public List<ProductionCountry> getProductionCountries() {
-        return mProductionCountries;
+        return production_countries;
     }
 
     public void setProductionCountries(List<ProductionCountry> productionCountries) {
-        mProductionCountries = productionCountries;
+        production_countries = productionCountries;
     }
 
     public String getReleaseDate() {
-        return mReleaseDate;
+        return release_date;
     }
 
     public void setReleaseDate(String releaseDate) {
-        mReleaseDate = releaseDate;
+        release_date = releaseDate;
     }
 
     public Long getRevenue() {
-        return mRevenue;
+        return revenue;
     }
 
     public void setRevenue(Long revenue) {
-        mRevenue = revenue;
+        this.revenue = revenue;
     }
 
     public Long getRuntime() {
-        return mRuntime;
+        return runtime;
     }
 
     public void setRuntime(Long runtime) {
-        mRuntime = runtime;
+        this.runtime = runtime;
     }
 
     public List<SpokenLanguage> getSpokenLanguages() {
-        return mSpokenLanguages;
+        return spoken_languages;
     }
 
     public void setSpokenLanguages(List<SpokenLanguage> spokenLanguages) {
-        mSpokenLanguages = spokenLanguages;
+        spoken_languages = spokenLanguages;
     }
 
     public String getStatus() {
-        return mStatus;
+        return status;
     }
 
     public void setStatus(String status) {
-        mStatus = status;
+        this.status = status;
     }
 
     public String getTagline() {
-        return mTagline;
+        return tagline;
     }
 
     public void setTagline(String tagline) {
-        mTagline = tagline;
+        this.tagline = tagline;
     }
 
     public String getTitle() {
-        return mTitle;
+        return title;
     }
 
     public void setTitle(String title) {
-        mTitle = title;
+        this.title = title;
     }
 
     public Boolean getVideo() {
-        return mVideo;
+        return video;
     }
 
     public void setVideo(Boolean video) {
-        mVideo = video;
+        this.video = video;
     }
 
     public Double getVoteAverage() {
-        return mVoteAverage;
+        return vote_average;
     }
 
     public void setVoteAverage(Double voteAverage) {
-        mVoteAverage = voteAverage;
+        vote_average = voteAverage;
     }
 
     public Long getVoteCount() {
-        return mVoteCount;
+        return vote_count;
     }
 
     public void setVoteCount(Long voteCount) {
-        mVoteCount = voteCount;
+        vote_count = voteCount;
     }
 
 }

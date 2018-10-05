@@ -1,53 +1,75 @@
-
 package com.ultra.muhammad.umdb_1.Models;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import javax.annotation.Generated;
+import java.io.Serializable;
 
-@Generated("net.hexar.json2pojo")
-@SuppressWarnings("unused")
-public class BelongsToCollection {
+public class BelongsToCollection implements Serializable {
 
     @SerializedName("backdrop_path")
-    private String mBackdropPath;
+    @Expose
+    private String backdrop_path;
     @SerializedName("id")
-    private Long mId;
+    @Expose
+    private Long id;
     @SerializedName("name")
-    private String mName;
+    @Expose
+    private String name;
     @SerializedName("poster_path")
-    private String mPosterPath;
+    @Expose
+    private String poster_path;
+
+    public BelongsToCollection() {
+    }
+
+    public BelongsToCollection(String backdrop_path, Long id, String name, String poster_path) {
+        this.backdrop_path = backdrop_path;
+        this.id = id;
+        this.name = name;
+        this.poster_path = poster_path;
+    }
+
+    @Override
+    public String toString() {
+        return "BelongsToCollection{" +
+                "backdrop_path='" + backdrop_path + '\'' +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", poster_path='" + poster_path + '\'' +
+                '}';
+    }
 
     public String getBackdropPath() {
-        return mBackdropPath;
+        return backdrop_path;
     }
 
     public void setBackdropPath(String backdropPath) {
-        mBackdropPath = backdropPath;
+        backdrop_path = backdropPath;
     }
 
     public Long getId() {
-        return mId;
+        return id;
     }
 
     public void setId(Long id) {
-        mId = id;
+        this.id = id;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public void setName(String name) {
-        mName = name;
+        this.name = name;
     }
 
     public String getPosterPath() {
-        return mPosterPath;
+        return poster_path;
     }
 
     public void setPosterPath(String posterPath) {
-        mPosterPath = posterPath;
+        poster_path = posterPath;
     }
 
 }

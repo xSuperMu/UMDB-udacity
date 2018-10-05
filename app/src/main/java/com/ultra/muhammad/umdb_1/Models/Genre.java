@@ -1,33 +1,49 @@
-
 package com.ultra.muhammad.umdb_1.Models;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import javax.annotation.Generated;
+import java.io.Serializable;
 
-@Generated("net.hexar.json2pojo")
-@SuppressWarnings("unused")
-public class Genre {
+public class Genre implements Serializable {
 
     @SerializedName("id")
-    private Long mId;
+    @Expose
+    private Long id;
     @SerializedName("name")
-    private String mName;
+    @Expose
+    private String name;
+
+    public Genre(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Genre() {
+    }
+
+    @Override
+    public String toString() {
+        return "Genre{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 
     public Long getId() {
-        return mId;
+        return id;
     }
 
     public void setId(Long id) {
-        mId = id;
+        this.id = id;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public void setName(String name) {
-        mName = name;
+        this.name = name;
     }
 
 }

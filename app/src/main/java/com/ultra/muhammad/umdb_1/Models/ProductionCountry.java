@@ -1,33 +1,47 @@
-
 package com.ultra.muhammad.umdb_1.Models;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import javax.annotation.Generated;
+import java.io.Serializable;
 
-@Generated("net.hexar.json2pojo")
-@SuppressWarnings("unused")
-public class ProductionCountry {
-
+public class ProductionCountry implements Serializable {
     @SerializedName("iso_3166_1")
-    private String mIso31661;
+    @Expose
+    private String iso_3166_1;
     @SerializedName("name")
-    private String mName;
+    @Expose
+    private String name;
+
+    public ProductionCountry() {
+    }
+
+    public ProductionCountry(String iso_3166_1, String name) {
+        this.iso_3166_1 = iso_3166_1;
+        this.name = name;
+    }
 
     public String getIso31661() {
-        return mIso31661;
+        return iso_3166_1;
     }
 
     public void setIso31661(String iso31661) {
-        mIso31661 = iso31661;
+        iso_3166_1 = iso31661;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public void setName(String name) {
-        mName = name;
+        this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "ProductionCountry{" +
+                "iso_3166_1='" + iso_3166_1 + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
