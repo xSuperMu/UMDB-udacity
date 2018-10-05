@@ -66,7 +66,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesAdap
             Log.i(TAG, movie.toString());
             String rating = String.valueOf(movie.getVoteAverage());
             String poster = RetrofitClientInstance.POSTER_BASE_URL + movie.getPosterPath();
-            Picasso.get().load(poster).fit().centerInside().into(mPosterImage);
+            Picasso.get().load(poster).placeholder(R.drawable.no_image).error(R.drawable.no_image).fit().centerInside().into(mPosterImage);
             mRating.setText(rating);
         }
     }

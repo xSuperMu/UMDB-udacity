@@ -125,8 +125,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
     private void fillViewsWithData() {
         Log.d(TAG, "fillViewsWithData() has been instantiated");
-        Picasso.get().load(POSTER_BASE_URL + poster).fit().centerInside().into(mPosterImage);
-        Picasso.get().load(BACKGROUND_BASE_URL + background).fit().centerInside().into(mBackgroundImage);
+        Picasso.get().load(POSTER_BASE_URL + poster).placeholder(R.drawable.no_image).error(R.drawable.no_image).fit().centerInside().into(mPosterImage);
+        Picasso.get().load(BACKGROUND_BASE_URL + background).placeholder(R.drawable.no_image).error(R.drawable.no_image).fit().centerInside().into(mBackgroundImage);
         mTitle.setText(title);
         mRating.setText(rate);
         mYear.setText(year);
