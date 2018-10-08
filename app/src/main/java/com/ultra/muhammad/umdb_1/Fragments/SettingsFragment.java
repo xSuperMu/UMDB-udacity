@@ -12,6 +12,22 @@ import com.ultra.muhammad.umdb_1.R;
 
 public class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // register the preference change listener
+        getPreferenceScreen().getSharedPreferences()
+                .registerOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        // unregister the preference change listener
+        getPreferenceScreen().getSharedPreferences()
+                .unregisterOnSharedPreferenceChangeListener(this);
+    }
+
     private void setPreferenceSummary(Preference preference, Object value) {
         String stringValue = value.toString();
 
@@ -43,22 +59,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                 setPreferenceSummary(p, value);
             }
         }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        // unregister the preference change listener
-        getPreferenceScreen().getSharedPreferences()
-                .unregisterOnSharedPreferenceChangeListener(this);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // register the preference change listener
-        getPreferenceScreen().getSharedPreferences()
-                .registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
