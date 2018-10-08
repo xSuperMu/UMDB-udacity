@@ -105,6 +105,16 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         MoviesAdapter mostPopularMovieAdapter = new MoviesAdapter(this, mMostPopularMoviesList);
         mMostPopularMoviesRecycler.setAdapter(mostPopularMovieAdapter);
 
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String s = preferences.getString(getString(R.string.pref_movies_key), "");
+        if (s.equals(getString(R.string.pref_enable_top_rated_movies_key))) {
+            mTopRatedMoviesLayout.setVisibility(View.GONE);
+            mMostPopularMoviesLayout.setVisibility(View.VISIBLE);
+        } else if (s.equals(getString(R.string.pref_enable_most_popular_movies_key))) {
+            mMostPopularMoviesLayout.setVisibility(View.GONE);
+            mTopRatedMoviesLayout.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -140,8 +150,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 mTopRatedMoviesLayout.setVisibility(View.GONE);
                 mMostPopularMoviesLayout.setVisibility(View.VISIBLE);
             } else if (s.equals(getString(R.string.pref_enable_most_popular_movies_key))) {
-                mTopRatedMoviesLayout.setVisibility(View.VISIBLE);
                 mMostPopularMoviesLayout.setVisibility(View.GONE);
+                mTopRatedMoviesLayout.setVisibility(View.VISIBLE);
             }
         }
     }
