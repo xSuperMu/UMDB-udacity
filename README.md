@@ -16,8 +16,5 @@ Till this stage, the app can:
 -> user rating
 -> release date
 
-
-
-
-
-
+## Popular Movies: Stage 1
+The app can:
