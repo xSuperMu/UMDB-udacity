@@ -7,6 +7,8 @@ import android.util.Log;
 
 import com.ultra.muhammad.umdb_1.Models.Movie;
 import com.ultra.muhammad.umdb_1.Models.MovieDetails;
+import com.ultra.muhammad.umdb_1.Models.MovieReviews;
+import com.ultra.muhammad.umdb_1.Models.MovieTrailer;
 import com.ultra.muhammad.umdb_1.MovieUtils.Utils;
 import com.ultra.muhammad.umdb_1.R;
 
@@ -57,6 +59,16 @@ public class SplashActivity extends AppCompatActivity {
             }
 
             @Override
+            public void onSuccess(MovieTrailer movieTrailer) {
+
+            }
+
+            @Override
+            public void onSuccess(MovieReviews movieReviews) {
+
+            }
+
+            @Override
             public void onFailure(Throwable t) {
 
             }
@@ -73,6 +85,16 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(MovieDetails movieDetails) {
+
+            }
+
+            @Override
+            public void onSuccess(MovieTrailer movieTrailer) {
+
+            }
+
+            @Override
+            public void onSuccess(MovieReviews movieReviews) {
 
             }
 
@@ -97,6 +119,16 @@ public class SplashActivity extends AppCompatActivity {
             }
 
             @Override
+            public void onSuccess(MovieTrailer movieTrailer) {
+
+            }
+
+            @Override
+            public void onSuccess(MovieReviews movieReviews) {
+
+            }
+
+            @Override
             public void onFailure(Throwable t) {
 
             }
@@ -113,6 +145,16 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(MovieDetails movieDetails) {
+
+            }
+
+            @Override
+            public void onSuccess(MovieTrailer movieTrailer) {
+
+            }
+
+            @Override
+            public void onSuccess(MovieReviews movieReviews) {
 
             }
 
@@ -139,6 +181,16 @@ public class SplashActivity extends AppCompatActivity {
             }
 
             @Override
+            public void onSuccess(MovieTrailer movieTrailer) {
+
+            }
+
+            @Override
+            public void onSuccess(MovieReviews movieReviews) {
+
+            }
+
+            @Override
             public void onFailure(Throwable t) {
 
             }
@@ -155,6 +207,16 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(MovieDetails movieDetails) {
+
+            }
+
+            @Override
+            public void onSuccess(MovieTrailer movieTrailer) {
+
+            }
+
+            @Override
+            public void onSuccess(MovieReviews movieReviews) {
 
             }
 
@@ -179,6 +241,16 @@ public class SplashActivity extends AppCompatActivity {
             }
 
             @Override
+            public void onSuccess(MovieTrailer movieTrailer) {
+
+            }
+
+            @Override
+            public void onSuccess(MovieReviews movieReviews) {
+
+            }
+
+            @Override
             public void onFailure(Throwable t) {
 
             }
@@ -195,6 +267,16 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(MovieDetails movieDetails) {
+
+            }
+
+            @Override
+            public void onSuccess(MovieTrailer movieTrailer) {
+
+            }
+
+            @Override
+            public void onSuccess(MovieReviews movieReviews) {
 
             }
 

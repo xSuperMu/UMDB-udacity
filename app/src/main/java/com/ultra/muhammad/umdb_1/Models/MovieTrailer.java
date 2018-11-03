@@ -1,4 +1,3 @@
-
 package com.ultra.muhammad.umdb_1.Models;
 
 import com.google.gson.annotations.Expose;

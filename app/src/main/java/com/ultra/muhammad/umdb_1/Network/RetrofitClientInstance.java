@@ -20,7 +20,6 @@ public class RetrofitClientInstance {
     private static final String TAG = "RetrofitClientInstance";
     private static final String MOVIE_BASE_URL = "https://api.themoviedb.org/3/";
 
-
     private static Retrofit retrofit;
 
     public static Retrofit getRetrofitInstance() {
@@ -33,7 +32,6 @@ public class RetrofitClientInstance {
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
         }
-
         return retrofit;
     }
 

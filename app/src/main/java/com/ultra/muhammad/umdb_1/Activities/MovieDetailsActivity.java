@@ -9,11 +9,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.ultra.muhammad.umdb_1.Models.Genre;
 import com.ultra.muhammad.umdb_1.Models.Movie;
 import com.ultra.muhammad.umdb_1.Models.MovieDetails;
+import com.ultra.muhammad.umdb_1.Models.MovieReviews;
+import com.ultra.muhammad.umdb_1.Models.MovieTrailer;
 import com.ultra.muhammad.umdb_1.MovieUtils.Utils;
 import com.ultra.muhammad.umdb_1.R;
 
@@ -28,6 +31,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static com.ultra.muhammad.umdb_1.Network.RetrofitClientInstance.BACKGROUND_BASE_URL;
 import static com.ultra.muhammad.umdb_1.Network.RetrofitClientInstance.POSTER_BASE_URL;
@@ -53,6 +57,14 @@ public class MovieDetailsActivity extends AppCompatActivity {
     ConstraintLayout mDetailsActivity;
     @BindView(R.id.loading_progress_bar)
     ProgressBar mLoadingProgressBar;
+    @BindView(R.id.trailers_layout)
+    ConstraintLayout mTrailersConstraintLayout;
+    @BindView(R.id.see_all_trailers_tv)
+    TextView mSeeAllTrailersTv;
+    @BindView(R.id.reviews_layout)
+    ConstraintLayout mReviewsConstraintLayout;
+    @BindView(R.id.see_all_tv)
+    TextView mSeeAllReviewsTv;
 
     String title, poster, background, productionYear, rate, genre, year, movieId, overview;
     Movie movie = null;
@@ -120,6 +132,16 @@ public class MovieDetailsActivity extends AppCompatActivity {
             public void onFailure(Throwable t) {
 
             }
+
+            @Override
+            public void onSuccess(MovieTrailer movieTrailer) {
+
+            }
+
+            @Override
+            public void onSuccess(MovieReviews movieReviews) {
+
+            }
         });
     }
 
@@ -161,5 +183,22 @@ public class MovieDetailsActivity extends AppCompatActivity {
             mDetailsActivity.setVisibility(View.VISIBLE);
             fillViewsWithData();
         }
+    }
+
+
+    @OnClick({R.id.trailers_layout, R.id.see_all_trailers_tv})
+    public void handleTrailersClick() {
+        Log.i(TAG, "User Trailer::has been clicked");
+        Toast.makeText(this, "Trailers clicked!", Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick({R.id.reviews_layout, R.id.see_all_tv})
+    public void handleReviewsClick() {
+        Log.i(TAG, "User Reviews view::has been clicked");
+        Toast.makeText(this, "Reviews clicked!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(), UserReviewsActivity.class);
+        intent.putExtra("movie_id", movieId);
+        Log.i(TAG, "Movie ID --> " + movieId);
+        startActivity(intent);
     }
 }

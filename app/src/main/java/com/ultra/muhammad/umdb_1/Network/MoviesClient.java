@@ -2,6 +2,8 @@ package com.ultra.muhammad.umdb_1.Network;
 
 import com.ultra.muhammad.umdb_1.Models.MovieDetails;
 import com.ultra.muhammad.umdb_1.Models.MovieResponse;
+import com.ultra.muhammad.umdb_1.Models.MovieReviews;
+import com.ultra.muhammad.umdb_1.Models.MovieTrailer;
 
 import java.util.Map;
 
@@ -20,4 +22,11 @@ public interface MoviesClient {
 
     @GET("movie/{movie_id}")
     Call<MovieDetails> getMovieDetails(@Path("movie_id") String id, @QueryMap Map<String, Object> options);
+
+    @GET("movie/{movie_id}/videos")
+    Call<MovieTrailer> getMovieTrailer(@Path("movie_id") String id, @QueryMap Map<String, Object> options);
+
+    @GET("movie/{movie_id}/reviews")
+    Call<MovieReviews> getMovieReviews(@Path("movie_id") String id, @QueryMap Map<String, Object> options);
+
 }

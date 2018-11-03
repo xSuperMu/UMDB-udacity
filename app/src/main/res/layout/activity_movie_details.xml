@@ -176,7 +176,89 @@
                     app:layout_constraintTop_toBottomOf="@id/movie_type_tv" />
             </android.support.constraint.ConstraintLayout>
 
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/trailers_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_trading_view_effect"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/extra_details_tv">
 
+                <TextView
+                    android:id="@+id/trailer_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    android:paddingLeft="16dp"
+                    android:text="@string/trailers"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="24sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    tools:ignore="RtlSymmetry" />
+
+                <TextView
+                    android:id="@+id/see_all_trailers_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingEnd="16dp"
+                    android:paddingRight="16dp"
+                    android:text="@string/see_all"
+                    android:textColor="@drawable/link_selection_effect"
+                    app:layout_constraintBottom_toBottomOf="@id/trailer_tv"
+                    app:layout_constraintRight_toRightOf="parent"
+                    tools:ignore="RtlSymmetry" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/reviews_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_trading_view_effect"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/trailers_layout">
+
+                <TextView
+                    android:id="@+id/user_review_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    android:paddingLeft="16dp"
+                    android:text="@string/user_reviews"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="24sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    tools:ignore="RtlSymmetry" />
+
+                <TextView
+                    android:id="@+id/see_all_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingEnd="16dp"
+                    android:paddingRight="16dp"
+                    android:text="@string/see_all"
+                    android:textColor="@drawable/link_selection_effect"
+                    app:layout_constraintBottom_toBottomOf="@id/user_review_tv"
+                    app:layout_constraintRight_toRightOf="parent"
+                    tools:ignore="RtlSymmetry" />
+
+            </android.support.constraint.ConstraintLayout>
         </android.support.constraint.ConstraintLayout>
 
     </android.support.constraint.ConstraintLayout>
