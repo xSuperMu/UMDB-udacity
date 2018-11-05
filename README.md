@@ -24,3 +24,7 @@ Till this stage, the app can:
 3) <img src="https://user-images.githubusercontent.com/17935590/47956696-366b3080-dfb1-11e8-99d2-814a53933a76.png" width="270" height="570">
 
 4) <img src="https://user-images.githubusercontent.com/17935590/47956697-366b3080-dfb1-11e8-8f46-331f78fa14c1.png" width="270" height="570">
+
+## Popular Movies: Stage 2
+
+#### Screenshots
