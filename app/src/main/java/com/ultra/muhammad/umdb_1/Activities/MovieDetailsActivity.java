@@ -117,7 +117,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         Utils.getMovieDetails(movieId, options, new Utils.retrofitCallback() {
             @Override
             public void onSuccess(List<Movie> movies) {
-
+                // Do nothing
             }
 
             @Override
@@ -130,17 +130,17 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Throwable t) {
-
+                // Do nothing
             }
 
             @Override
             public void onSuccess(MovieTrailer movieTrailer) {
-
+                // Do nothing
             }
 
             @Override
             public void onSuccess(MovieReviews movieReviews) {
-
+                // Do nothing
             }
         });
     }
@@ -190,6 +190,10 @@ public class MovieDetailsActivity extends AppCompatActivity {
     public void handleTrailersClick() {
         Log.i(TAG, "User Trailer::has been clicked");
         Toast.makeText(this, "Trailers clicked!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(), MovieTrailersActivity.class);
+        intent.putExtra("movie_id", movieId);
+        Log.i(TAG, "Movie ID --> " + movieId);
+        startActivity(intent);
     }
 
     @OnClick({R.id.reviews_layout, R.id.see_all_tv})

@@ -19,6 +19,7 @@ public class RetrofitClientInstance {
     public static final String BACKGROUND_BASE_URL = "https://image.tmdb.org/t/p/w500/";
     private static final String TAG = "RetrofitClientInstance";
     private static final String MOVIE_BASE_URL = "https://api.themoviedb.org/3/";
+    public static final String TRAILER_BASE_URL = "https://www.youtube.com/watch?v=";
 
     private static Retrofit retrofit;
 

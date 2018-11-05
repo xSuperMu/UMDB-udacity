@@ -12,6 +12,7 @@
         android:layout_marginBottom="16dp"
         android:background="@color/colorPrimaryLight"
         android:paddingLeft="16dp"
+        android:paddingBottom="16dp"
         android:paddingRight="16dp">
 
         <at.blogc.android.views.ExpandableTextView

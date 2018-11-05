@@ -44,16 +44,16 @@
         </activity>
         <activity
             android:name=".Activities.UserReviewsActivity"
-            android:parentActivityName=".Activities.MovieDetailsActivity"
-            android:screenOrientation="portrait">
+            android:label="@string/reviews"
+            android:parentActivityName=".Activities.MovieDetailsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activities.MovieDetailsActivity" />
         </activity>
         <activity
             android:name=".Activities.MovieTrailersActivity"
-            android:parentActivityName=".Activities.MovieDetailsActivity"
-            android:screenOrientation="portrait">
+            android:label="@string/trailers"
+            android:parentActivityName=".Activities.MovieDetailsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activities.MovieDetailsActivity" />
