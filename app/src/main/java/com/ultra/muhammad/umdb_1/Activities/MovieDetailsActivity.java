@@ -6,6 +6,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -65,11 +66,14 @@ public class MovieDetailsActivity extends AppCompatActivity {
     ConstraintLayout mReviewsConstraintLayout;
     @BindView(R.id.see_all_tv)
     TextView mSeeAllReviewsTv;
+    @BindView(R.id.add_to_favorite_btn)
+    Button mAddToFavorite;
 
     String title, poster, background, productionYear, rate, genre, year, movieId, overview;
     Movie movie = null;
     boolean bool, f1 = false;
     Map<String, Object> options = new HashMap<>();
+    boolean mIsFavorite = false;
 
     private static String formatTime(String tripTime) throws ParseException {
         Log.d(TAG, "formatTime() has been instantiated");
@@ -204,5 +208,18 @@ public class MovieDetailsActivity extends AppCompatActivity {
         intent.putExtra("movie_id", movieId);
         Log.i(TAG, "Movie ID --> " + movieId);
         startActivity(intent);
+    }
+
+    @OnClick(R.id.add_to_favorite_btn)
+    public void handleFavoriteMovie(Button b) {
+        if (mIsFavorite) {
+            b.setBackground(getResources().getDrawable(R.drawable.blue_trading_button));
+            mAddToFavorite.setText(getResources().getString(R.string.add_to_favorite));
+            mIsFavorite = false;
+        } else {
+            b.setBackground(getResources().getDrawable(R.drawable.transparent_button));
+            mAddToFavorite.setText(getResources().getString(R.string.remove_from_favorite));
+            mIsFavorite = true;
+        }
     }
 }

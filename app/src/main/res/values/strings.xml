@@ -25,5 +25,7 @@
     <string name="pref_movies_key">movies</string>
     <string name="trailer">Trailer</string>
     <string name="reviews">Reviews</string>
+    <string name="add_to_favorite">+ Add To Favorite</string>
+    <string name="remove_from_favorite">- Remove From Favorite</string>
 
 </resources>
