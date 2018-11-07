@@ -16,6 +16,9 @@ Till this stage, the app can:
 -> user rating
 -> release date
 
+![gif](https://user-images.githubusercontent.com/17935590/48095878-7daa2900-e21e-11e8-872a-e9bc8c0c4894.gif)
+----
+
 #### Screenshots
 1) <img src="https://user-images.githubusercontent.com/17935590/47956690-28b5ab00-dfb1-11e8-95f2-3ac660512af7.png" width="270" height="570">
 
