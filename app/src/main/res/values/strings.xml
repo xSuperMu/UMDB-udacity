@@ -34,5 +34,6 @@
     <string name="add_to_favorite">+ Add To Favorite</string>
     <string name="remove_from_favorite">- Remove From Favorite</string>
     <string name="favorite_movies">Favorite Movies</string>
+    <string name="umdb_offline_mode">UMDB Offline Mode</string>
 
 </resources>

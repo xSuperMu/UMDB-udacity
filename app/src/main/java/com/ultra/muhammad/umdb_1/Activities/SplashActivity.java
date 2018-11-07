@@ -17,6 +17,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.ultra.muhammad.umdb_1.Network.NetworkUtils.isNetworkConnected;
+
 public class SplashActivity extends AppCompatActivity {
 
     private static final String TAG = SplashActivity.class.getSimpleName();
@@ -35,8 +37,11 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate() has been instantiated");
 
-        // TODO (1) Check connectivity
-        getData();
+        // COMPLETED (1) Check connectivity
+        if (isNetworkConnected(getApplicationContext()))
+            getData();
+        else
+            moveToMainOffline();
     }
 
     private void getData() {
@@ -297,5 +302,11 @@ public class SplashActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+    }
+
+    private void moveToMainOffline() {
+        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

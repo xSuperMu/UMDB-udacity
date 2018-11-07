@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -29,6 +30,7 @@ import butterknife.ButterKnife;
 
 import static com.ultra.muhammad.umdb_1.Activities.SplashActivity.mMostPopularMoviesList;
 import static com.ultra.muhammad.umdb_1.Activities.SplashActivity.mTopRatedMoviesList;
+import static com.ultra.muhammad.umdb_1.Network.NetworkUtils.isNetworkConnected;
 
 public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener, OfflineMoviesAdapter.ItemClickListener {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -45,8 +47,10 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     @BindView(R.id.recycler_view_favorite)
     RecyclerView mFavoriteMoviesRecycler;
 
+    private ActionBar actionBar;
     private AppDatabase mDb;
     private OfflineMoviesAdapter mOfflineMoviesAdapter;
+    private boolean isOffline;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,11 +59,27 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         ButterKnife.bind(this);
         Log.d(TAG, "onCreate() has been instantiated");
 
-        // TODO (2) Check connectivity, if offline show the favorite recycler only
-        // TODO (3) change the activity name to "Offline mode"
-        // TODO (4) Read the movies from the Room database
-        prepareRecyclerViews();
-        loadMoviesData();
+        actionBar = getSupportActionBar();
+        // COMPLETED (2) Check connectivity, if offline show the favorite recycler only
+        // COMPLETED (3) change the activity name to "Offline mode"
+        // COMPLETED (4) Read the movies from the Room database
+
+        if (isNetworkConnected(getApplicationContext())) {
+            Log.d(TAG, "There is an Internet connection available!");
+            isOffline = false;
+            prepareRecyclerViews();
+            loadMoviesData();
+        } else {
+            Log.d(TAG, "There is no an Internet connection available!");
+            if (actionBar != null)
+                actionBar.setTitle(R.string.umdb_offline_mode);
+            isOffline = true;
+            mTopRatedMoviesLayout.setVisibility(View.GONE);
+            mMostPopularMoviesLayout.setVisibility(View.GONE);
+            mFavoriteMoviesLayout.setVisibility(View.VISIBLE);
+
+        }
+
 
         mOfflineMoviesAdapter = new OfflineMoviesAdapter(getApplicationContext(), this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
@@ -126,8 +146,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
             }
         }));
-
-
     }
 
     private void loadMoviesData() {
@@ -153,7 +171,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        // TODO (3): Check connectivity state, if offline hide the main menu
+        // COMPLETED (3): Check connectivity state, if offline hide the main menu
+        if (isOffline) {
+            return false;
+        }
+
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
         return true;
@@ -194,5 +216,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     @Override
     public void onItemClickListener(MovieEntry movieEntry) {
         Toast.makeText(this, "Movie Clicked", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this, MovieDetailsActivity.class);
+        intent.putExtra("selected_favorite_movie", movieEntry);
+        intent.setAction(MovieDetailsActivity.ACTION_NO_INTERNET);
+        startActivity(intent);
     }
 }
