@@ -7,14 +7,19 @@ import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.ultra.muhammad.umdb_1.Adapters.MoviesAdapter;
+import com.ultra.muhammad.umdb_1.Adapters.OfflineMoviesAdapter;
+import com.ultra.muhammad.umdb_1.Database.AppDatabase;
+import com.ultra.muhammad.umdb_1.Database.MovieEntry;
 import com.ultra.muhammad.umdb_1.Models.Movie;
 import com.ultra.muhammad.umdb_1.MovieUtils.RecyclerItemClickListener;
 import com.ultra.muhammad.umdb_1.R;
@@ -25,7 +30,7 @@ import butterknife.ButterKnife;
 import static com.ultra.muhammad.umdb_1.Activities.SplashActivity.mMostPopularMoviesList;
 import static com.ultra.muhammad.umdb_1.Activities.SplashActivity.mTopRatedMoviesList;
 
-public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener, OfflineMoviesAdapter.ItemClickListener {
     private static final String TAG = MainActivity.class.getSimpleName();
     @BindView(R.id.recycler_view_top_rated)
     RecyclerView mTopRatedMoviesRecycler;
@@ -35,6 +40,13 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     ConstraintLayout mMostPopularMoviesLayout;
     @BindView(R.id.most_popular_layout)
     ConstraintLayout mTopRatedMoviesLayout;
+    @BindView(R.id.favorite_layout)
+    ConstraintLayout mFavoriteMoviesLayout;
+    @BindView(R.id.recycler_view_favorite)
+    RecyclerView mFavoriteMoviesRecycler;
+
+    private AppDatabase mDb;
+    private OfflineMoviesAdapter mOfflineMoviesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +54,29 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         Log.d(TAG, "onCreate() has been instantiated");
-        prepareRecyclerViews();
 
+        // TODO (2) Check connectivity, if offline show the favorite recycler only
+        // TODO (3) change the activity name to "Offline mode"
+        // TODO (4) Read the movies from the Room database
+        prepareRecyclerViews();
         loadMoviesData();
+
+        mOfflineMoviesAdapter = new OfflineMoviesAdapter(getApplicationContext(), this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+        mFavoriteMoviesRecycler.setLayoutManager(layoutManager);
+        mFavoriteMoviesRecycler.setHasFixedSize(true);
+        mFavoriteMoviesRecycler.setAdapter(mOfflineMoviesAdapter);
         PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
+
+        Log.d(TAG, "The app will try to create the Database");
+        mDb = AppDatabase.getsInstance(getApplicationContext());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume() has been instantiated");
+        mOfflineMoviesAdapter.setMovieEntries(mDb.movieDao().loadAllMovies());
     }
 
     private void prepareRecyclerViews() {
@@ -95,6 +126,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
             }
         }));
+
+
     }
 
     private void loadMoviesData() {
@@ -119,6 +152,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
+        // TODO (3): Check connectivity state, if offline hide the main menu
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
         return true;
@@ -156,4 +191,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         }
     }
 
+    @Override
+    public void onItemClickListener(MovieEntry movieEntry) {
+        Toast.makeText(this, "Movie Clicked", Toast.LENGTH_SHORT).show();
+    }
 }

@@ -10,9 +10,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+import com.ultra.muhammad.umdb_1.Database.AppDatabase;
+import com.ultra.muhammad.umdb_1.Database.MovieEntry;
 import com.ultra.muhammad.umdb_1.Models.Genre;
 import com.ultra.muhammad.umdb_1.Models.Movie;
 import com.ultra.muhammad.umdb_1.Models.MovieDetails;
@@ -68,6 +69,12 @@ public class MovieDetailsActivity extends AppCompatActivity {
     TextView mSeeAllReviewsTv;
     @BindView(R.id.add_to_favorite_btn)
     Button mAddToFavorite;
+    @BindView(R.id.movie_details_layout)
+    ConstraintLayout mOnlineLayout;
+    @BindView(R.id.offline_movie_details_layout)
+    ConstraintLayout mOfflineLayout;
+
+    private AppDatabase mDb;
 
     String title, poster, background, productionYear, rate, genre, year, movieId, overview;
     Movie movie = null;
@@ -90,6 +97,9 @@ public class MovieDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_movie_details);
         ButterKnife.bind(this);
         Log.d(TAG, "onCreate() has been instantiated");
+
+        mDb = AppDatabase.getsInstance(getApplicationContext());
+
         showProgressBar();
 
         Intent intent = getIntent();
@@ -193,7 +203,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
     @OnClick({R.id.trailers_layout, R.id.see_all_trailers_tv})
     public void handleTrailersClick() {
         Log.i(TAG, "User Trailer::has been clicked");
-        Toast.makeText(this, "Trailers clicked!", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getApplicationContext(), MovieTrailersActivity.class);
         intent.putExtra("movie_id", movieId);
         Log.i(TAG, "Movie ID --> " + movieId);
@@ -203,7 +212,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
     @OnClick({R.id.reviews_layout, R.id.see_all_tv})
     public void handleReviewsClick() {
         Log.i(TAG, "User Reviews view::has been clicked");
-        Toast.makeText(this, "Reviews clicked!", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getApplicationContext(), UserReviewsActivity.class);
         intent.putExtra("movie_id", movieId);
         Log.i(TAG, "Movie ID --> " + movieId);
@@ -219,6 +227,9 @@ public class MovieDetailsActivity extends AppCompatActivity {
         } else {
             b.setBackground(getResources().getDrawable(R.drawable.transparent_button));
             mAddToFavorite.setText(getResources().getString(R.string.remove_from_favorite));
+            // Get movie details {id, name, rate, type, date, overview}
+            MovieEntry movieEntry = new MovieEntry(movieId, title, Double.parseDouble(rate), overview, year, genre);
+            mDb.movieDao().insertMovie(movieEntry);
             mIsFavorite = true;
         }
     }

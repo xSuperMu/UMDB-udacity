@@ -34,6 +34,8 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate() has been instantiated");
+
+        // TODO (1) Check connectivity
         getData();
     }
 

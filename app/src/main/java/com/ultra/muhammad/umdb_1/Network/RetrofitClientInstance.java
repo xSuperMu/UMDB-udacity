@@ -24,7 +24,7 @@ public class RetrofitClientInstance {
     private static Retrofit retrofit;
 
     public static Retrofit getRetrofitInstance() {
-        Log.wtf(TAG, "getRetrofitInstance: getting retrofit instance...");
+        Log.wtf(TAG, "getRetrofitInstance: creating new retrofit instance...");
         if (retrofit == null) {
             retrofit =
                     new Retrofit.Builder()
