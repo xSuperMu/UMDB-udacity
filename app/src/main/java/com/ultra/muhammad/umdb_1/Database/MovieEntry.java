@@ -1,16 +1,16 @@
 package com.ultra.muhammad.umdb_1.Database;
 
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 import java.io.Serializable;
 
 @Entity(tableName = "movie")
 public class MovieEntry implements Serializable {
 
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    @NonNull
+    @PrimaryKey
     private String movieId;
     private String title;
     private double vote_average;
@@ -18,8 +18,8 @@ public class MovieEntry implements Serializable {
     private String release_date;
     private String movieGenres;
 
-    public MovieEntry(int id, String movieId, String title, double vote_average, String overview, String release_date, String movieGenres) {
-        this.id = id;
+
+    public MovieEntry(@NonNull String movieId, String title, double vote_average, String overview, String release_date, String movieGenres) {
         this.movieId = movieId;
         this.title = title;
         this.vote_average = vote_average;
@@ -28,29 +28,12 @@ public class MovieEntry implements Serializable {
         this.movieGenres = movieGenres;
     }
 
-    @Ignore
-    public MovieEntry(String movieId, String title, double vote_average, String overview, String release_date, String movieGenres) {
-        this.movieId = movieId;
-        this.title = title;
-        this.vote_average = vote_average;
-        this.overview = overview;
-        this.release_date = release_date;
-        this.movieGenres = movieGenres;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    @NonNull
     public String getMovieId() {
         return movieId;
     }
 
-    public void setMovieId(String movieId) {
+    public void setMovieId(@NonNull String movieId) {
         this.movieId = movieId;
     }
 

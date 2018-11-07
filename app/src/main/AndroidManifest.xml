@@ -59,6 +59,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activities.MovieDetailsActivity" />
         </activity>
+        <activity
+            android:name=".Activities.MovieOfflineDetailsActivity"
+            android:parentActivityName=".Activities.MovieDetailsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.MovieDetailsActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -69,15 +69,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
     TextView mSeeAllReviewsTv;
     @BindView(R.id.add_to_favorite_btn)
     Button mAddToFavorite;
-    @BindView(R.id.movie_details_layout)
-    ConstraintLayout mOnlineLayout;
-    @BindView(R.id.offline_movie_details_layout)
-    ConstraintLayout mOfflineLayout;
-    public static final String ACTION_NO_INTERNET = "no_internet_connection";
-    @BindView(R.id.offline_details_movie_name)
-    TextView mOfflineTitle;
-    @BindView(R.id.offline_details_movie_rating)
-    TextView mOfflineRate;
 
     private AppDatabase mDb;
 
@@ -108,40 +99,34 @@ public class MovieDetailsActivity extends AppCompatActivity {
         showProgressBar();
 
         Intent intent = getIntent();
-        if (intent != null && !ACTION_NO_INTERNET.equals(intent.getAction())) {
+        if (intent != null)
             if (intent.hasExtra("selected_movie"))
                 movie = (Movie) intent.getSerializableExtra("selected_movie");
             else if (intent.hasExtra("selected_upcoming_movie"))
                 movie = (Movie) intent.getSerializableExtra("selected_upcoming_movie");
-            title = movie.getTitle();
-            poster = movie.getPosterPath();
-            background = movie.getBackdropPath();
-            productionYear = movie.getReleaseDate();
-            rate = String.valueOf(movie.getVoteAverage());
-            overview = movie.getOverview();
-            movieId = String.valueOf(movie.getId());
-            try {
-                year = formatTime(movie.getReleaseDate());
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+        title = movie.getTitle();
+        poster = movie.getPosterPath();
+        background = movie.getBackdropPath();
+        productionYear = movie.getReleaseDate();
+        rate = String.valueOf(movie.getVoteAverage());
+        overview = movie.getOverview();
+        movieId = String.valueOf(movie.getId());
 
-            getExtraMovieDetailsFromInternet(movieId);
-        } else {
-            runOfflineMode(intent);
+        boolean alreadyInTheDatabase = movieAlreadyInTheDatabase(movieId);
+        if (alreadyInTheDatabase) {
+            Log.d(TAG, "Movie Already in the Database");
+            mAddToFavorite.setBackground(getResources().getDrawable(R.drawable.transparent_button));
+            mAddToFavorite.setText(getResources().getString(R.string.remove_from_favorite));
+            mIsFavorite = true;
         }
-    }
 
-    private void runOfflineMode(Intent intent) {
-        Log.d(TAG, "Offline Mode");
-        MovieEntry movieEntry = (MovieEntry) intent.getSerializableExtra("selected_favorite_movie");
-        mReviewsConstraintLayout.setVisibility(View.GONE);
-        mTrailersConstraintLayout.setVisibility(View.GONE);
-        mOnlineLayout.setVisibility(View.GONE);
-        mLoadingProgressBar.setVisibility(View.GONE);
-        mOfflineLayout.setVisibility(View.VISIBLE);
-        mDetailsActivity.setVisibility(View.VISIBLE);
-        fillViewsWithDataOffline(movieEntry);
+        try {
+            year = formatTime(movie.getReleaseDate());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        getExtraMovieDetailsFromInternet(movieId);
+
     }
 
     private void getExtraMovieDetailsFromInternet(String movieId) {
@@ -188,19 +173,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
         mYear.setText(year);
         mType.setText(genre);
         mOverview.setText(overview);
-    }
-
-    private void fillViewsWithDataOffline(MovieEntry movieEntry) {
-        Log.d(TAG, "fillViewsWithDataOffline() has been instantiated");
-        mOfflineTitle.setText(movieEntry.getTitle());
-        mOfflineRate.setText(String.valueOf(movieEntry.getVote_average()));
-        try {
-            mYear.setText(formatTime(movieEntry.getRelease_date()));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        mType.setText(movieEntry.getMovieGenres());
-        mOverview.setText(movieEntry.getOverview());
     }
 
     private String getMovieGenres(List<Genre> genres) {
@@ -256,6 +228,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
         if (mIsFavorite) {
             b.setBackground(getResources().getDrawable(R.drawable.blue_trading_button));
             mAddToFavorite.setText(getResources().getString(R.string.add_to_favorite));
+            MovieEntry movieEntry = new MovieEntry(movieId, title, Double.parseDouble(rate), overview, year, genre);
+            mDb.movieDao().deleteMovie(movieEntry);
             mIsFavorite = false;
         } else {
             b.setBackground(getResources().getDrawable(R.drawable.transparent_button));
@@ -266,4 +240,12 @@ public class MovieDetailsActivity extends AppCompatActivity {
             mIsFavorite = true;
         }
     }
+
+    private boolean movieAlreadyInTheDatabase(String movieId) {
+        Log.d(TAG, "getMovieGenres() has been instantiated");
+
+        MovieEntry movieEntry = mDb.movieDao().loadMovieById(movieId);
+        return movieEntry != null;
+    }
+
 }

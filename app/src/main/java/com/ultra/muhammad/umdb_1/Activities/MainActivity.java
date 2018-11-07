@@ -33,6 +33,7 @@ import static com.ultra.muhammad.umdb_1.Activities.SplashActivity.mTopRatedMovie
 import static com.ultra.muhammad.umdb_1.Network.NetworkUtils.isNetworkConnected;
 
 public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener, OfflineMoviesAdapter.ItemClickListener {
+
     private static final String TAG = MainActivity.class.getSimpleName();
     @BindView(R.id.recycler_view_top_rated)
     RecyclerView mTopRatedMoviesRecycler;
@@ -79,7 +80,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             mFavoriteMoviesLayout.setVisibility(View.VISIBLE);
 
         }
-
 
         mOfflineMoviesAdapter = new OfflineMoviesAdapter(getApplicationContext(), this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
@@ -216,9 +216,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     @Override
     public void onItemClickListener(MovieEntry movieEntry) {
         Toast.makeText(this, "Movie Clicked", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(MainActivity.this, MovieDetailsActivity.class);
+        Intent intent = new Intent(MainActivity.this, MovieOfflineDetailsActivity.class);
         intent.putExtra("selected_favorite_movie", movieEntry);
-        intent.setAction(MovieDetailsActivity.ACTION_NO_INTERNET);
         startActivity(intent);
     }
 }
