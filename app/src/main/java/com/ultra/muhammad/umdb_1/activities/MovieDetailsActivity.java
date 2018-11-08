@@ -243,6 +243,12 @@ public class MovieDetailsActivity extends AppCompatActivity {
         }
     }
 
+
+    /**
+     * I only use this method to check if the movie is in the database or not
+     * I don't need to use LiveData or ViewModel to observe any changes to anything...
+     * That's why I've allowed allowMainThreadQueries() method in the AppDatabase class/getInstance method
+     */
     private boolean movieAlreadyInTheDatabase(final String movieId) {
         Log.d(TAG, "getMovieGenres() has been instantiated");
 

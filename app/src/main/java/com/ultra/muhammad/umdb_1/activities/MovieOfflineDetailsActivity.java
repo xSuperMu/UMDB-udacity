@@ -117,6 +117,12 @@ public class MovieOfflineDetailsActivity extends AppCompatActivity {
         }
     }
 
+
+    /**
+     * I only use this method to check if the movie is in the database or not
+     * I don't need to use LiveData or ViewModel to observe any changes to anything...
+     * That's why I've allowed allowMainThreadQueries() method in the AppDatabase class/getInstance method
+     */
     private boolean movieAlreadyInTheDatabase(String movieId) {
         MovieEntry movieEntry = mDb.movieDao().loadMovieById(movieId);
         return movieEntry != null;
