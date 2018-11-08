@@ -1,9 +1,12 @@
 package com.ultra.muhammad.umdb_1.Activities;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -15,15 +18,17 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.ultra.muhammad.umdb_1.Adapters.MoviesAdapter;
 import com.ultra.muhammad.umdb_1.Adapters.OfflineMoviesAdapter;
+import com.ultra.muhammad.umdb_1.ArchComp.MainViewModel;
 import com.ultra.muhammad.umdb_1.Database.AppDatabase;
 import com.ultra.muhammad.umdb_1.Database.MovieEntry;
 import com.ultra.muhammad.umdb_1.Models.Movie;
 import com.ultra.muhammad.umdb_1.MovieUtils.RecyclerItemClickListener;
 import com.ultra.muhammad.umdb_1.R;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -61,9 +66,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         Log.d(TAG, "onCreate() has been instantiated");
 
         actionBar = getSupportActionBar();
-        // COMPLETED (2) Check connectivity, if offline show the favorite recycler only
-        // COMPLETED (3) change the activity name to "Offline mode"
-        // COMPLETED (4) Read the movies from the Room database
 
         if (isNetworkConnected(getApplicationContext())) {
             Log.d(TAG, "There is an Internet connection available!");
@@ -90,13 +92,21 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         Log.d(TAG, "The app will try to create the Database");
         mDb = AppDatabase.getsInstance(getApplicationContext());
+        setupViewModel();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d(TAG, "onResume() has been instantiated");
-        mOfflineMoviesAdapter.setMovieEntries(mDb.movieDao().loadAllMovies());
+    private void setupViewModel() {
+        Log.d(TAG, "setupViewModel() has been instantiated");
+
+        // Out of the MainThread by default
+        MainViewModel mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        mainViewModel.getMovies().observe(this, new Observer<List<MovieEntry>>() {
+            @Override
+            public void onChanged(@Nullable List<MovieEntry> movieEntries) {
+                Log.d(TAG, "Updating list of movies from LiveData in ViewModel");
+                mOfflineMoviesAdapter.setMovieEntries(movieEntries);
+            }
+        });
     }
 
     private void prepareRecyclerViews() {
@@ -161,17 +171,22 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         String s = preferences.getString(getString(R.string.pref_movies_key), "");
         if (s.equals(getString(R.string.pref_enable_top_rated_movies_key))) {
             mTopRatedMoviesLayout.setVisibility(View.GONE);
+            mFavoriteMoviesLayout.setVisibility(View.GONE);
             mMostPopularMoviesLayout.setVisibility(View.VISIBLE);
         } else if (s.equals(getString(R.string.pref_enable_most_popular_movies_key))) {
             mMostPopularMoviesLayout.setVisibility(View.GONE);
+            mFavoriteMoviesLayout.setVisibility(View.GONE);
             mTopRatedMoviesLayout.setVisibility(View.VISIBLE);
+        } else {
+            mMostPopularMoviesLayout.setVisibility(View.GONE);
+            mTopRatedMoviesLayout.setVisibility(View.GONE);
+            mFavoriteMoviesLayout.setVisibility(View.VISIBLE);
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        // COMPLETED (3): Check connectivity state, if offline hide the main menu
         if (isOffline) {
             return false;
         }
@@ -205,17 +220,23 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             String s = sharedPreferences.getString(key, getString(R.string.pref_enable_most_popular_movies_key));
             if (s.equals(getString(R.string.pref_enable_top_rated_movies_key))) {
                 mTopRatedMoviesLayout.setVisibility(View.GONE);
+                mFavoriteMoviesLayout.setVisibility(View.GONE);
                 mMostPopularMoviesLayout.setVisibility(View.VISIBLE);
             } else if (s.equals(getString(R.string.pref_enable_most_popular_movies_key))) {
                 mMostPopularMoviesLayout.setVisibility(View.GONE);
+                mFavoriteMoviesLayout.setVisibility(View.GONE);
                 mTopRatedMoviesLayout.setVisibility(View.VISIBLE);
+            } else if (s.equals(getString(R.string.pref_enable_favorite_movies_key))) {
+                mMostPopularMoviesLayout.setVisibility(View.GONE);
+                mFavoriteMoviesLayout.setVisibility(View.VISIBLE);
+                mTopRatedMoviesLayout.setVisibility(View.GONE);
             }
         }
     }
 
     @Override
     public void onItemClickListener(MovieEntry movieEntry) {
-        Toast.makeText(this, "Movie Clicked", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "Movie Clicked");
         Intent intent = new Intent(MainActivity.this, MovieOfflineDetailsActivity.class);
         intent.putExtra("selected_favorite_movie", movieEntry);
         startActivity(intent);
