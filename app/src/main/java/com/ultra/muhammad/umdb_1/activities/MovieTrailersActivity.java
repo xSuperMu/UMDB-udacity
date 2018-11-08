@@ -25,6 +25,8 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.ultra.muhammad.umdb_1.movie_utils.Constants.UMDB_API_KEY;
+
 public class MovieTrailersActivity extends AppCompatActivity {
     private static final String TAG = MovieTrailersActivity.class.getSimpleName();
     private final Map<String, Object> options = new HashMap<>();
@@ -59,7 +61,7 @@ public class MovieTrailersActivity extends AppCompatActivity {
 
     private void loadTrailersFromInternet() {
         Log.d(TAG, "loadTrailersFromInternet() has been instantiated");
-        options.put("api_key", getString(R.string.api_key));
+        options.put("api_key", UMDB_API_KEY);
         Utils.getMovieTrailer(movieId, options, new Utils.retrofitCallback() {
             @Override
             public void onSuccess(List<Movie> movies) {

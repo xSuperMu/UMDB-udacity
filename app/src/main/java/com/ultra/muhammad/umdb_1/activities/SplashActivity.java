@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.ultra.muhammad.umdb_1.R;
 import com.ultra.muhammad.umdb_1.models.Movie;
 import com.ultra.muhammad.umdb_1.models.MovieDetails;
 import com.ultra.muhammad.umdb_1.models.MovieReviews;
@@ -17,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.ultra.muhammad.umdb_1.movie_utils.Constants.UMDB_API_KEY;
 import static com.ultra.muhammad.umdb_1.network.NetworkUtils.isNetworkConnected;
 
 public class SplashActivity extends AppCompatActivity {
@@ -51,7 +51,7 @@ public class SplashActivity extends AppCompatActivity {
 
         options.put(PAGE, "1");
         options.put(LANGUAGE, LANGUAGE_VALUE);
-        options.put(API_KEY, getString(R.string.api_key));
+        options.put(API_KEY, UMDB_API_KEY);
         Utils.getMostPopularMovies(options, new Utils.retrofitCallback() {
             @Override
             public void onSuccess(List<Movie> movies) {
@@ -173,7 +173,7 @@ public class SplashActivity extends AppCompatActivity {
 
         UpComingOptions.put(PAGE, "2");
         UpComingOptions.put(LANGUAGE, LANGUAGE_VALUE);
-        UpComingOptions.put(API_KEY, getString(R.string.api_key));
+        UpComingOptions.put(API_KEY, UMDB_API_KEY);
         Utils.getTopRatedMovies(UpComingOptions, new Utils.retrofitCallback() {
             @Override
             public void onSuccess(List<Movie> movies) {

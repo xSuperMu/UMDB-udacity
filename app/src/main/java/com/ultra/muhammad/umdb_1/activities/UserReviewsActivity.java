@@ -25,6 +25,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.ultra.muhammad.umdb_1.movie_utils.Constants.UMDB_API_KEY;
+
 public class UserReviewsActivity extends AppCompatActivity {
     private static final String TAG = UserReviewsActivity.class.getSimpleName();
     private final Map<String, Object> options = new HashMap<>();
@@ -54,7 +56,7 @@ public class UserReviewsActivity extends AppCompatActivity {
 
     private void getMovieReviewsFromInternet() {
         Log.d(TAG, "getMovieReviewsFromInternet() has been instantiated");
-        options.put("api_key", getString(R.string.api_key));
+        options.put("api_key", UMDB_API_KEY);
         options.put("page", "1");
         Utils.getMovieReviews(movieId, options, new Utils.retrofitCallback() {
             @Override

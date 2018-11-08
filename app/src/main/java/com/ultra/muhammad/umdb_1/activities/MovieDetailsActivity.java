@@ -35,6 +35,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.ultra.muhammad.umdb_1.movie_utils.Constants.UMDB_API_KEY;
 import static com.ultra.muhammad.umdb_1.network.RetrofitClientInstance.BACKGROUND_BASE_URL;
 import static com.ultra.muhammad.umdb_1.network.RetrofitClientInstance.POSTER_BASE_URL;
 
@@ -133,7 +134,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
     private void getExtraMovieDetailsFromInternet(String movieId) {
         Log.d(TAG, "getExtraMovieDetailsFromInternet() has been instantiated");
         bool = false;
-        options.put("api_key", getString(R.string.api_key));
+        options.put("api_key", UMDB_API_KEY);
         Utils.getMovieDetails(movieId, options, new Utils.retrofitCallback() {
             @Override
             public void onSuccess(List<Movie> movies) {
