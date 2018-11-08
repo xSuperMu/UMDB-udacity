@@ -9,7 +9,7 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".Activities.MainActivity">
+        tools:context=".activities.MainActivity">
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/most_popular_layout"

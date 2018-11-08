@@ -7,7 +7,6 @@
     <color name="colorPrimaryText">#FFFFFF</color>
     <color name="colorSecondaryText">#BCBCBC</color>
     <color name="colorAccent">#FFEB3B</color>
-    <color name="colorDivider">#BDBDBD</color>
     <color name="colorLink">#03A9f4</color>
     <color name="colorTrailerButton">#0277BD</color>
 </resources>

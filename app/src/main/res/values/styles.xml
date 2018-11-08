@@ -9,12 +9,6 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
 
-    <style name="MineCustomTabText" parent="TextAppearance.Design.Tab">
-        <item name="android:textSize">16sp</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:background">@color/colorPrimaryLight</item>
-    </style>
-
     <!-- Splash Screen theme. -->
     <style name="SplashTheme" parent="@style/AppTheme">
         <!--<item name="android:windowActionBar">false</item>-->

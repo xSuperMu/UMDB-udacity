@@ -6,10 +6,9 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDarker"
     android:paddingBottom="16dp"
-    tools:context=".Activities.MovieOfflineDetailsActivity">
+    tools:context=".activities.MovieOfflineDetailsActivity">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/activity_movie_details_layout_offline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="visible">
@@ -61,7 +60,6 @@
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/extra_details_tv_offline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -104,7 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:gravity="left"
+                android:gravity="start"
                 android:paddingLeft="32dp"
                 android:paddingRight="32dp"
                 android:textColor="@color/colorPrimaryText"

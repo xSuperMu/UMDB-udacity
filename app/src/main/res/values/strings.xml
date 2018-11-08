@@ -10,22 +10,16 @@
     <string name="user_reviews">User Reviews</string>
     <string name="trailers">Trailers</string>
     <string name="see_all">SEE ALL</string>
-    <string name="reviews_s">Review(s)</string>
+    <string name="reviews_s"> Review(s)</string>
 
     <string name="pref_enable_most_popular_movies_key" translatable="false">enable most popular movies</string>
     <string name="pref_enable_most_popular_movies_title" translatable="false">Most Popular Movies</string>
-    <string name="pref_enable_most_popular_movies_true">Enabled</string>
-    <string name="pref_enable_most_popular_movies_false">Not Enabled</string>
 
     <string name="pref_enable_top_rated_movies_key" translatable="false">enable top rated movies</string>
     <string name="pref_enable_top_rated_movies_title" translatable="false">Top Rated Movies</string>
-    <string name="pref_enable_top_rated_movies_true">Enabled</string>
-    <string name="pref_enable_top_rated_movies_false">Not Enabled</string>
 
     <string name="pref_enable_favorite_movies_key" translatable="false">enable favorite movies</string>
     <string name="pref_enable_favorite_movies_title" translatable="false">Favorite Movies</string>
-    <string name="pref_enable_favorite_movies_true">Enabled</string>
-    <string name="pref_enable_favorite_movies_false">Not Enabled</string>
 
     <string name="pref_movies_label">Displayed Movies</string>
     <string name="pref_movies_key">movies</string>

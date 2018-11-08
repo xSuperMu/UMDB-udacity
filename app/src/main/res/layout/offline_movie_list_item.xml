@@ -26,8 +26,7 @@
             android:paddingTop="4dp"
             android:paddingBottom="4dp"
             android:textColor="@color/colorPrimaryText"
-            android:textSize="18sp"
-            tools:text="Muhammad Elsayed" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/offline_movie_rate"
