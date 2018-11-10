@@ -28,5 +28,6 @@
     <string name="remove_from_favorite">- Remove From Favorite</string>
     <string name="favorite_movies">Favorite Movies</string>
     <string name="umdb_offline_mode">UMDB Offline Mode</string>
+    <string name="date_pattern">MM-dd-yyyy</string>
 
 </resources>

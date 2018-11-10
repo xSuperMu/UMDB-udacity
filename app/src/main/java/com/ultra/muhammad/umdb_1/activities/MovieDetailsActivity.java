@@ -1,5 +1,6 @@
 package com.ultra.muhammad.umdb_1.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
@@ -79,10 +80,10 @@ public class MovieDetailsActivity extends AppCompatActivity {
     private String title, poster, background, productionYear, rate, genre, year, movieId, overview;
     boolean mIsFavorite = false;
 
-    private static String formatTime(String tripTime) throws ParseException {
+    private static String formatTime(Context context, String tripTime) throws ParseException {
         Log.d(TAG, "formatTime() has been instantiated");
         DateFormat formatter
-                = new SimpleDateFormat("MM-dd-yyyy");
+                = new SimpleDateFormat(context.getString(R.string.date_pattern));
         DateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         Date date = originalFormat.parse(tripTime);
         return formatter.format(date);
@@ -123,7 +124,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         }
 
         try {
-            year = formatTime(movie.getReleaseDate());
+            year = formatTime(getApplicationContext(), movie.getReleaseDate());
         } catch (ParseException e) {
             e.printStackTrace();
         }

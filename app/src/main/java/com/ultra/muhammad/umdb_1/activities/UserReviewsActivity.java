@@ -119,7 +119,7 @@ public class UserReviewsActivity extends AppCompatActivity {
             mReviewsRecycler.setAdapter(adapter);
             String numberOfReviews = String.valueOf(mReviews.size());
             Log.i(TAG, "Number Of Reviews --> " + numberOfReviews);
-            String numOfReviewsString = numberOfReviews + getString(R.string.reviews_s);
+            String numOfReviewsString = numberOfReviews + " " + getString(R.string.reviews_s);
             mNumberOfReviews.setText(numOfReviewsString);
             mLoadingProgressBar.setVisibility(View.GONE);
             mReviewsLayout.setVisibility(View.VISIBLE);
